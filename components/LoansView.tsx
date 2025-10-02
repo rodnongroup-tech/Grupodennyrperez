@@ -236,15 +236,18 @@ export const LoansView: React.FC<LoansViewProps> = ({ loans, loanPayments, addLo
                             </p>
                         </div>
                         <div className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
-                            <h3 className="text-lg font-semibold">Registrar Nuevo Pago de Cuota</h3>
-                            <button onClick={() => selectedLoan && handleRecordPayment(selectedLoan)} className="bg-green-500 text-white px-5 py-2 rounded-lg hover:bg-green-600 font-semibold flex items-center gap-2"><IconCash className="w-5 h-5"/>Registrar Pago de DOP {selectedLoan.monthlyPaymentAmount.toFixed(2)}</button>
+                            <h3 className="text-lg font-semibold text-gray-800">Registrar Nuevo Pago de Cuota</h3>
+                            <button onClick={() => selectedLoan && handleRecordPayment(selectedLoan)} className="bg-green-500 text-white px-5 py-2 rounded-lg hover:bg-green-600 font-semibold flex items-center justify-center gap-2">
+                                <IconCash className="w-5 h-5 flex-shrink-0" />
+                                <span>Registrar Pago de DOP {selectedLoan.monthlyPaymentAmount.toFixed(2)}</span>
+                            </button>
                         </div>
                         <h3 className="text-lg font-semibold">Historial de Pagos</h3>
                         <div className="max-h-80 overflow-y-auto border rounded-lg">
                             <table className="min-w-full divide-y">
                                 <thead className="bg-gray-100 sticky top-0"><tr>{["Fecha", "Monto Pagado", "Interés", "Capital", "Saldo Restante"].map(h => <th key={h} className="px-4 py-2 text-left text-sm font-medium text-gray-600">{h}</th>)}</tr></thead>
                                 <tbody className="bg-white divide-y">
-                                    {loanPayments.filter(p => p.loanId === selectedLoan.id).sort((a,b) => new Date(b.paymentDate).getTime() - new Date(a.paymentDate).getTime()).map(p => (
+                                    {loanPayments.filter(p => p.loanId === selectedLoan.id).sort((a,b) => new Date(b.paymentDate).getTime() - new Date(a.date).getTime()).map(p => (
                                         <tr key={p.id}>
                                             <td className="px-4 py-2 text-sm">{new Date(p.paymentDate).toLocaleDateString('es-DO')}</td>
                                             <td className="px-4 py-2 text-sm font-semibold text-green-700">{p.amountPaid.toFixed(2)}</td>
