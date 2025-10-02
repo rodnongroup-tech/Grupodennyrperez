@@ -1,0 +1,8 @@
+{
+  "name": "Grupo Denny R. Perez EIRL - Payroll",
+  "description": "Payroll management application by Grupo Denny R. Perez EIRL, featuring AI-powered explanations and assistance.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "prompt": ""
+}
